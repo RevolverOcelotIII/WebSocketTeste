@@ -9,10 +9,14 @@ public class ClienteTCP {
 
     public static void main(String[] args) throws IOException {
         String hostName = "localhost";
+        //porta deve ser a mesma do servidor
         int portNumber = 1234;
-
+        //parentesis para declarar os recursos que serão executados dentro das chaves do try
         try (
-            Socket socket = new Socket(hostName, portNumber); PrintWriter out = new PrintWriter(socket.getOutputStream(),true);
+            //inicialização de uma nova conexão com o servidor, que deve estar sendo executado, usando como parâmetro o endereço e a porta do mesmo
+            Socket socket = new Socket(hostName, portNumber);
+            //como foi dito na parte do servidor, o PrintWriter é utilizado para enviar mensagens, e o BufferedReader para receber as mensagens
+            PrintWriter out = new PrintWriter(socket.getOutputStream(),true);
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             Scanner scanner = new Scanner(System.in);) {
             String inputLine;
